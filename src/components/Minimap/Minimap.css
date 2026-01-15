@@ -1,0 +1,118 @@
+/* Minimap Container */
+.minimap-container {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    width: 180px;
+    background: var(--slate-800);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    z-index: 100;
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Minimap Header */
+.minimap-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.minimap-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--slate-400);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.minimap-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--slate-400);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.minimap-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Minimap Preview */
+.minimap-preview {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.minimap-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.minimap-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--slate-400);
+}
+
+/* Viewport Indicator */
+.minimap-viewport {
+    position: absolute;
+    border: 2px solid var(--primary-500);
+    background: rgba(139, 92, 246, 0.1);
+    pointer-events: none;
+    transition: all 0.1s ease-out;
+}
+
+/* Collapsed Toggle */
+.minimap-toggle {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    color: var(--slate-400);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    z-index: 100;
+}
+
+.minimap-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .minimap-container,
+    .minimap-toggle {
+        display: none;
+    }
+}

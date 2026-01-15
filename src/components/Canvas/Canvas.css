@@ -1,0 +1,183 @@
+/* Canvas Container */
+.canvas-container {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow:
+        0 0 0 1px var(--glass-border),
+        var(--shadow-xl),
+        inset 0 0 100px rgba(0, 0, 0, 0.02);
+}
+
+/* Main Canvas */
+.drawing-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+    z-index: 2;
+}
+
+/* Drawing cursor variations */
+.drawing-canvas.pen-cursor {
+    cursor: crosshair;
+}
+
+.drawing-canvas.eraser-cursor {
+    cursor: cell;
+}
+
+/* Subtle grid pattern */
+.canvas-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+/* Canvas hover glow effect */
+.canvas-container::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: calc(var(--radius-lg) + 2px);
+    background: var(--gradient-accent);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+}
+
+.canvas-container:hover::after {
+    opacity: 0.1;
+}
+
+/* Canvas shadow glow */
+.canvas-container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border-radius: calc(var(--radius-lg) + 20px);
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Remote Cursors */
+.remote-cursor {
+    position: absolute;
+    pointer-events: none;
+    z-index: 100;
+    transform: translate(-2px, -2px);
+    transition: left 0.05s linear, top 0.05s linear;
+}
+
+.remote-cursor svg {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-500);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.cursor-name {
+    position: absolute;
+    top: 20px;
+    left: 12px;
+    padding: 4px 8px;
+    background: var(--primary-500);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    box-shadow: var(--shadow-md);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .canvas-container {
+        border-radius: var(--radius-md);
+    }
+
+    .canvas-grid {
+        background-size: 15px 15px;
+    }
+}
+
+/* Shape Drawing Indicator */
+.shape-indicator {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background: rgba(139, 92, 246, 0.9);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-lg);
+    z-index: 200;
+    animation: fadeIn 0.2s ease-out;
+    text-transform: capitalize;
+}
+
+/* Laser pointer style */
+.laser-point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #ef4444 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 150;
+    animation: laserPulse 0.5s ease-in-out infinite;
+    box-shadow:
+        0 0 10px #ef4444,
+        0 0 20px #ef4444,
+        0 0 30px #ef4444;
+}
+
+@keyframes laserPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.7;
+    }
+}
+
+/* Crosshair cursor for shape tools */
+.canvas-container[data-tool="line"] .drawing-canvas,
+.canvas-container[data-tool="rectangle"] .drawing-canvas,
+.canvas-container[data-tool="circle"] .drawing-canvas,
+.canvas-container[data-tool="arrow"] .drawing-canvas {
+    cursor: crosshair;
+}

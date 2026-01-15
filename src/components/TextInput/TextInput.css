@@ -1,0 +1,60 @@
+/* Text Input Container */
+.text-input-container {
+    position: absolute;
+    z-index: 500;
+    min-width: 150px;
+    max-width: 400px;
+}
+
+/* Text Input */
+.text-input {
+    width: 100%;
+    min-height: 40px;
+    max-height: 200px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--primary-500);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    resize: both;
+    outline: none;
+    box-shadow:
+        0 0 0 4px rgba(139, 92, 246, 0.2),
+        var(--shadow-lg);
+    animation: textInputAppear 0.2s ease-out;
+}
+
+.text-input::placeholder {
+    color: var(--slate-400);
+}
+
+/* Hint */
+.text-input-hint {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--slate-500);
+}
+
+.text-input-hint span {
+    padding: 2px 8px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: var(--radius-sm);
+    color: white;
+}
+
+/* Animation */
+@keyframes textInputAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

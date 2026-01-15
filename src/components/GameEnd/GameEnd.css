@@ -1,0 +1,334 @@
+/* Game End Overlay */
+.game-end-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Confetti */
+.confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    left: var(--left);
+    width: var(--size);
+    height: var(--size);
+    background: var(--color);
+    border-radius: 2px;
+    animation: confetti-fall var(--duration) linear var(--delay) forwards;
+    transform: rotate(45deg);
+}
+
+@keyframes confetti-fall {
+    0% {
+        top: -20px;
+        opacity: 1;
+        transform: rotate(0deg) translateX(0);
+    }
+
+    100% {
+        top: 110vh;
+        opacity: 0;
+        transform: rotate(720deg) translateX(100px);
+    }
+}
+
+/* Modal */
+.game-end-modal {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
+    padding: 40px;
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.99));
+    border: 2px solid var(--primary-500);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    animation: scaleIn 0.5s ease-out;
+    box-shadow:
+        0 0 60px rgba(139, 92, 246, 0.3),
+        0 0 100px rgba(139, 92, 246, 0.1);
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Winner Section */
+.winner-section {
+    margin-bottom: 32px;
+}
+
+.winner-crown {
+    font-size: 48px;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.winner-trophy {
+    position: relative;
+    font-size: 80px;
+    margin: 16px 0;
+}
+
+.trophy-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.3) 0%, transparent 70%);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.winner-title {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #eab308 0%, #f97316 50%, #ef4444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+
+.winner-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+}
+
+.winner-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(234, 179, 8, 0.2);
+    border: 1px solid #eab308;
+    border-radius: var(--radius-full);
+    font-size: 20px;
+    font-weight: 700;
+    color: #eab308;
+}
+
+/* Final Leaderboard */
+.final-leaderboard {
+    margin-bottom: 32px;
+}
+
+.final-leaderboard h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--slate-300);
+    margin-bottom: 16px;
+}
+
+.final-leaderboard h2 svg {
+    color: var(--primary-400);
+}
+
+.standings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.standing-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-fast);
+}
+
+.standing-item:hover {
+    transform: translateX(4px);
+}
+
+.standing-item.winner {
+    background: linear-gradient(90deg, rgba(234, 179, 8, 0.2) 0%, transparent 100%);
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.standing-rank {
+    width: 36px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.standing-player {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.standing-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    font-size: 14px;
+}
+
+.standing-name {
+    font-weight: 600;
+    color: white;
+}
+
+.standing-score {
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--primary-400);
+}
+
+/* Action Buttons */
+.game-end-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.action-btn.restart {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.action-btn.restart:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.action-btn.quit {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--slate-300);
+}
+
+.action-btn.quit:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* Sparkles */
+.sparkles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 24px;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.sparkle.s1 {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.sparkle.s2 {
+    top: 15%;
+    right: 10%;
+    animation-delay: 0.5s;
+}
+
+.sparkle.s3 {
+    bottom: 20%;
+    left: 15%;
+    animation-delay: 1s;
+}
+
+.sparkle.s4 {
+    bottom: 15%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .game-end-modal {
+        padding: 24px;
+    }
+
+    .winner-trophy {
+        font-size: 60px;
+    }
+
+    .winner-title {
+        font-size: 28px;
+    }
+
+    .game-end-actions {
+        flex-direction: column;
+    }
+}
